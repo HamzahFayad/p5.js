@@ -37,7 +37,7 @@ function draw() {
   push();
   generateLunaSol();
   generateBirds(padding);
-  generateFence(padding);
+  generateCity(padding);
   pop();
   push();
   generateFields(padding);
@@ -115,18 +115,23 @@ function generateBottomLayer() {}
 
 function generateMiddleLayer() {}
 
-function generateFence(p) {
+function generateCity(p) {
   push();
   noStroke();
   let col = color(cols2[randomCol2]);
   col.setAlpha(128 + 128 * sin(millis() / 50));
-  fill(col);
+
   for (let m = 0; m < width; m += random(10, 20)) {
+    for (let w = 0; w < 8; w++) {
+      fill(cols1[randomCol]);
+      circle(w + m, height - p - random(80, 230), random(1, 4));
+    }
+    fill(col);
     rect(
       p + m,
-      height - p - random(100, 200),
-      random(10, 40),
-      120,
+      height - p - random(100, 250),
+      random(15, 40),
+      200,
       random(0, 5)
     );
     //rect(p, p + m + 230, width, 3, 8);
@@ -168,9 +173,9 @@ function generateLunaSol() {
 function generateBirds(p) {
   fill(cols2[randomCol2]);
   noStroke();
-  for (let b = 0; b < random(2, 8); b++) {
+  for (let b = 0; b < random(2, 18); b++) {
     let posX = random(p + 25, width - p - 25);
-    rect(posX, random(p + 25, p + 75), 10, 10, 50);
+    rect(posX, random(p + 25, p + 75), 6, 6, 50);
   }
 }
 
@@ -178,8 +183,6 @@ function generate() {}
 
 //save image
 
-/*
-function mouseClicked() {
+/*function mouseClicked() {
   save("lineart.png");
-}
-*/
+}*/
