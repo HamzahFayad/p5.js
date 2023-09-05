@@ -1,0 +1,12 @@
+body {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+div {
+  display: grid;
+  place-items: center;
+  background: #fff;
+  height: 400px;
+}

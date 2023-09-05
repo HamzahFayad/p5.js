@@ -1,10 +1,12 @@
 let cols1 = ["#A8C1D1", "#6A87A5", "#FAB18B", "#FBBF77", "#FFFFA7"];
 let cols2 = ["#352F44", "#27374D", "#2C3333", "#2b251f", "#222831"];
 let randomCol;
-let padding = 160;
+let padding = 100;
+
+let moonSun;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth - padding * 2, windowHeight);
   pixelDensity(5);
 
   randomCol = floor(random(cols1.length));
@@ -14,14 +16,39 @@ function setup() {
   stroke(cols2[randomCol]);
   fill(cols2[randomCol]);
 
+  //variables
+  moonSun = int(random(1, 3));
+  if (windowWidth < 900) {
+    padding = 80;
+  }
+
   noLoop();
 }
 
 function draw() {
-  generateFrameBorders(padding);
+  //background(cols1[randomCol]);
+
   generateLunaSol();
+  generateFields(padding);
+
+  //BORDERS
+  push();
+  stroke(cols1[randomCol]);
+  strokeWeight(200);
+  noFill();
+  rect(0, 0, width, height);
+  pop();
+  generateFrameBorders(padding);
+
   //circle(width / 2, height / 2, 50);
 }
+
+/*function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  if (windowWidth < 900) {
+    padding = 80;
+  }
+}*/
 
 //border with intersecting edges
 function generateFrameBorders(p) {
@@ -43,6 +70,24 @@ function generateFrameBorders(p) {
   line(width - p, height - p, width - p, height - p + 20);
 }
 
+function generateFields(p) {
+  noStroke();
+  let col = color(cols2[randomCol]);
+  col.setAlpha(128 + 128 * sin(millis() / 1000));
+  fill(col);
+  //fill(`${cols2[randomCol]}, 42`);
+  rect(200, p + 200, 300);
+
+  stroke(cols2[randomCol]);
+  strokeWeight(2);
+  for (let l = 0; l < width; l++) {
+    for (let m = 0; m < 15; m++) {
+      //line(p * l, height - p * m, p * l * 2, height - p * m);
+      point(p + l * 6, height / 1.165 - m * 5);
+    }
+  }
+}
+
 function generateBottomLayer() {}
 
 function generateMiddleLayer() {}
@@ -50,15 +95,21 @@ function generateMiddleLayer() {}
 //randomize sun and moon
 function generateLunaSol() {
   var randomX = random(padding * 1.75, width - padding * 1.75);
-  fill(cols2[randomCol]);
-  noStroke();
-  ellipse(randomX + 20, padding * 1.4, 80, 80);
 
-  fill(cols1[randomCol]);
-  noStroke();
-  ellipse(randomX, padding * 1.4, 80, 80);
+  if (moonSun === 1) {
+    fill(cols2[randomCol]);
+    noStroke();
+    ellipse(randomX + 20, padding + 60, 80, 80);
 
-  let pos;
+    fill(cols1[randomCol]);
+    noStroke();
+    ellipse(randomX, padding + 60, 80, 80);
+  } else {
+    fill(cols2[randomCol]);
+    circle(randomX, padding + 60, 80);
+  }
+
+  /*let pos;
   for (let c = 0; c < 42; c++) {
     fill(cols2[randomCol]);
     if (c % 2 === 0) {
@@ -67,7 +118,7 @@ function generateLunaSol() {
       pos = 15;
     }
     circle(padding + 15 + (c * padding) / 6, height - padding - pos, 35);
-  }
+  }*/
 }
 
 function generate() {}
