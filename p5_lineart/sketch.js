@@ -6,7 +6,7 @@ let padding = 100;
 let moonSun;
 
 function setup() {
-  createCanvas(windowWidth - padding * 2, windowHeight);
+  createCanvas(windowWidth - padding * 2, windowHeight - padding);
   pixelDensity(5);
 
   randomCol = floor(random(cols1.length));
@@ -28,9 +28,14 @@ function setup() {
 function draw() {
   //background(cols1[randomCol]);
 
+  push();
   generateLunaSol();
+  generateBirds(padding);
+  generateFence(padding);
+  pop();
+  push();
   generateFields(padding);
-
+  pop();
   //BORDERS
   push();
   stroke(cols1[randomCol]);
@@ -38,6 +43,7 @@ function draw() {
   noFill();
   rect(0, 0, width, height);
   pop();
+
   generateFrameBorders(padding);
 
   //circle(width / 2, height / 2, 50);
@@ -53,7 +59,7 @@ function draw() {
 //border with intersecting edges
 function generateFrameBorders(p) {
   noFill();
-  strokeWeight(1);
+  strokeWeight(2);
   rect(p, p, width - p * 2, height - p * 2);
 
   //top left
@@ -71,31 +77,62 @@ function generateFrameBorders(p) {
 }
 
 function generateFields(p) {
-  noStroke();
+  /*noStroke();
   let col = color(cols2[randomCol]);
   col.setAlpha(128 + 128 * sin(millis() / 1000));
   fill(col);
+    rect(200, p + 200, 300);*/
   //fill(`${cols2[randomCol]}, 42`);
-  rect(200, p + 200, 300);
 
-  stroke(cols2[randomCol]);
-  strokeWeight(2);
+  //strokeWeight(2);
+  rect(p, height - p - 20, width);
+  push();
   for (let l = 0; l < width; l++) {
-    for (let m = 0; m < 15; m++) {
+    for (let m = 0; m < 25; m++) {
+      strokeWeight(random(1, 40));
+
+      stroke("#FC9C54");
+      point(p + l * 6, height / 1.25 - m * 3);
+
+      stroke(cols1[randomCol]);
+      point(p + l * 6, height / 1.25 - m);
+
+      stroke(cols2[randomCol]);
+      point(p + l * 6, height / 1.2 - m);
       //line(p * l, height - p * m, p * l * 2, height - p * m);
-      point(p + l * 6, height / 1.165 - m * 5);
     }
   }
+  pop();
 }
 
 function generateBottomLayer() {}
 
 function generateMiddleLayer() {}
 
+function generateFence(p) {
+  push();
+  noStroke();
+  let col = color(cols2[randomCol]);
+  col.setAlpha(128 + 128 * sin(millis() / 50));
+  fill(col);
+  for (let m = 0; m < width; m += random(10, 20)) {
+    rect(
+      p + m,
+      height - p - random(100, 200),
+      random(10, 40),
+      120,
+      random(0, 5)
+    );
+    //rect(p, p + m + 230, width, 3, 8);
+  }
+  pop();
+}
+
 //randomize sun and moon
 function generateLunaSol() {
   var randomX = random(padding * 1.75, width - padding * 1.75);
 
+  push();
   if (moonSun === 1) {
     fill(cols2[randomCol]);
     noStroke();
@@ -107,6 +144,7 @@ function generateLunaSol() {
   } else {
     fill(cols2[randomCol]);
     circle(randomX, padding + 60, 80);
+    pop();
   }
 
   /*let pos;
@@ -121,11 +159,21 @@ function generateLunaSol() {
   }*/
 }
 
+function generateBirds(p) {
+  fill(cols2[randomCol]);
+  noStroke();
+  for (let b = 0; b < random(2, 8); b++) {
+    let posX = random(p + 25, width - p - 25);
+    rect(posX, random(p + 25, p + 75), 10, 10, 50);
+  }
+}
+
 function generate() {}
 
 //save image
+
 /*
 function mouseClicked() {
-  save("p5image.png");
+  save("lineart.png");
 }
 */
