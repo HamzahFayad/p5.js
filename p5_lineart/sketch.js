@@ -1,6 +1,10 @@
 let cols1 = ["#A8C1D1", "#6A87A5", "#FAB18B", "#FBBF77", "#FFFFA7"];
 let cols2 = ["#352F44", "#27374D", "#2C3333", "#2b251f", "#222831"];
+let vibrantCols = ["#FCBAAD", "#E48586", "#E06469", "#FC9C54", "#FFE569"];
 let randomCol;
+let randomCol2;
+let randomVibCol;
+
 let padding = 100;
 
 let moonSun;
@@ -10,11 +14,13 @@ function setup() {
   pixelDensity(5);
 
   randomCol = floor(random(cols1.length));
+  randomCol2 = floor(random(cols2.length));
+  randomVibCol = floor(random(vibrantCols.length));
 
   //coloring
   background(cols1[randomCol]);
-  stroke(cols2[randomCol]);
-  fill(cols2[randomCol]);
+  stroke(cols2[randomCol2]);
+  fill(cols2[randomCol2]);
 
   //variables
   moonSun = int(random(1, 3));
@@ -91,13 +97,13 @@ function generateFields(p) {
     for (let m = 0; m < 25; m++) {
       strokeWeight(random(1, 40));
 
-      stroke("#FC9C54");
+      stroke(vibrantCols[randomVibCol]);
       point(p + l * 6, height / 1.25 - m * 3);
 
       stroke(cols1[randomCol]);
       point(p + l * 6, height / 1.25 - m);
 
-      stroke(cols2[randomCol]);
+      stroke(cols2[randomCol2]);
       point(p + l * 6, height / 1.2 - m);
       //line(p * l, height - p * m, p * l * 2, height - p * m);
     }
@@ -112,7 +118,7 @@ function generateMiddleLayer() {}
 function generateFence(p) {
   push();
   noStroke();
-  let col = color(cols2[randomCol]);
+  let col = color(cols2[randomCol2]);
   col.setAlpha(128 + 128 * sin(millis() / 50));
   fill(col);
   for (let m = 0; m < width; m += random(10, 20)) {
@@ -134,7 +140,7 @@ function generateLunaSol() {
 
   push();
   if (moonSun === 1) {
-    fill(cols2[randomCol]);
+    fill(cols2[randomCol2]);
     noStroke();
     ellipse(randomX + 20, padding + 60, 80, 80);
 
@@ -142,7 +148,7 @@ function generateLunaSol() {
     noStroke();
     ellipse(randomX, padding + 60, 80, 80);
   } else {
-    fill(cols2[randomCol]);
+    fill(cols2[randomCol2]);
     circle(randomX, padding + 60, 80);
     pop();
   }
@@ -160,7 +166,7 @@ function generateLunaSol() {
 }
 
 function generateBirds(p) {
-  fill(cols2[randomCol]);
+  fill(cols2[randomCol2]);
   noStroke();
   for (let b = 0; b < random(2, 8); b++) {
     let posX = random(p + 25, width - p - 25);
