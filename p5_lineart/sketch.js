@@ -39,6 +39,7 @@ function draw() {
   generateBirds(padding);
   generateCity(padding);
   pop();
+  //fields
   push();
   generateFields(padding);
   pop();
@@ -122,6 +123,7 @@ function generateCity(p) {
   col.setAlpha(128 + 128 * sin(millis() / 50));
 
   for (let m = 0; m < width; m += random(10, 20)) {
+    //window lights
     for (let w = 0; w < 8; w++) {
       fill(cols1[randomCol]);
       circle(w + m, height - p - random(80, 230), random(1, 4));
@@ -148,7 +150,6 @@ function generateLunaSol() {
     fill(cols2[randomCol2]);
     noStroke();
     ellipse(randomX + 20, padding + 60, 80, 80);
-
     fill(cols1[randomCol]);
     noStroke();
     ellipse(randomX, padding + 60, 80, 80);
@@ -171,11 +172,29 @@ function generateLunaSol() {
 }
 
 function generateBirds(p) {
+  noStroke();
+  let col = color(vibrantCols[randomVibCol]);
+  col.setAlpha(128 + 128 * sin(millis() / 10000));
+
   fill(cols2[randomCol2]);
   noStroke();
-  for (let b = 0; b < random(2, 18); b++) {
+  //birds
+  for (let b = 0; b < random(2, 48); b++) {
     let posX = random(p + 25, width - p - 25);
-    rect(posX, random(p + 25, p + 75), 6, 6, 50);
+    let posY = random(p + 25, p + 75);
+    rect(posX, posY, 6, 6, 50);
+
+    //clouds
+
+    for (let c = 0; c < random(2, 22); c++) {
+      push();
+      fill(col);
+      stroke(col);
+      strokeWeight(random(2, 6));
+      ellipse(random(posX, posX + 100), posY + 50 + c, 28, 6);
+      line(posX, posY + 50 + c, posX + random(40, 180), posY + 50 + c);
+      pop();
+    }
   }
 }
 
