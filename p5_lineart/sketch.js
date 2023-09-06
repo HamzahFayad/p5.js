@@ -10,7 +10,8 @@ let padding = 100;
 let moonSun;
 
 function setup() {
-  createCanvas(windowWidth - padding * 2, windowHeight - padding);
+  //createCanvas(windowWidth - padding * 2, windowHeight - padding);
+  createCanvas(1150, 600);
   pixelDensity(5);
 
   randomCol = floor(random(cols1.length));
@@ -112,10 +113,6 @@ function generateFields(p) {
   pop();
 }
 
-function generateBottomLayer() {}
-
-function generateMiddleLayer() {}
-
 function generateCity(p) {
   push();
   noStroke();
@@ -208,6 +205,6 @@ function generate() {}
 
 //save image
 
-/*function mouseClicked() {
-  save("lineart.png");
-}*/
+function mouseClicked() {
+  save("mycity.png");
+}
