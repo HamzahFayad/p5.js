@@ -38,6 +38,7 @@ function draw() {
   generateLunaSol();
   generateBirds(padding);
   generateCity(padding);
+  generateBirds(padding);
   pop();
   //fields
   push();
@@ -52,7 +53,6 @@ function draw() {
   pop();
 
   generateFrameBorders(padding);
-
   //circle(width / 2, height / 2, 50);
 }
 
@@ -119,9 +119,12 @@ function generateMiddleLayer() {}
 function generateCity(p) {
   push();
   noStroke();
+  //transpareny
   let col = color(cols2[randomCol2]);
   col.setAlpha(128 + 128 * sin(millis() / 50));
-
+  //glowing
+  drawingContext.shadowBlur = 20;
+  drawingContext.shadowColor = color(cols1[randomCol]);
   for (let m = 0; m < width; m += random(10, 20)) {
     //window lights
     for (let w = 0; w < 8; w++) {
@@ -147,6 +150,7 @@ function generateLunaSol() {
 
   push();
   if (moonSun === 1) {
+    //moon
     fill(cols2[randomCol2]);
     noStroke();
     ellipse(randomX + 20, padding + 60, 80, 80);
@@ -154,6 +158,7 @@ function generateLunaSol() {
     noStroke();
     ellipse(randomX, padding + 60, 80, 80);
   } else {
+    //sun
     fill(cols2[randomCol2]);
     circle(randomX, padding + 60, 80);
     pop();
@@ -180,12 +185,12 @@ function generateBirds(p) {
   noStroke();
   //birds
   for (let b = 0; b < random(2, 48); b++) {
-    let posX = random(p + 25, width - p - 25);
-    let posY = random(p + 25, p + 75);
-    rect(posX, posY, 6, 6, 50);
-
+    let posX = random(p, width - p - 25);
+    let posY = random(p + 25, p + 175);
+    if (moonSun === 1) {
+      rect(posX, posY, 3, 3, 100);
+    }
     //clouds
-
     for (let c = 0; c < random(2, 22); c++) {
       push();
       fill(col);
@@ -193,7 +198,7 @@ function generateBirds(p) {
       strokeWeight(random(2, 6));
       ellipse(random(posX, posX + 100), posY + 50 + c, 28, 6);
       line(posX, posY + 50 + c, posX + random(40, 180), posY + 50 + c);
-      line(posX, posY + 150 + c, posX + random(40, 180), posY + 150 + c);
+      line(posX, posY + 180 + c, posX + random(40, 180), posY + 180 + c);
       pop();
     }
   }
