@@ -193,6 +193,7 @@ function generateBirds(p) {
       strokeWeight(random(2, 6));
       ellipse(random(posX, posX + 100), posY + 50 + c, 28, 6);
       line(posX, posY + 50 + c, posX + random(40, 180), posY + 50 + c);
+      line(posX, posY + 150 + c, posX + random(40, 180), posY + 150 + c);
       pop();
     }
   }
