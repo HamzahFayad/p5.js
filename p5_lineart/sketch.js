@@ -37,9 +37,9 @@ function draw() {
 
   push();
   generateLunaSol();
-  generateBirds(padding);
+  generateSky(padding);
   generateCity(padding);
-  generateBirds(padding);
+  generateSky(padding);
   pop();
   //fields
   push();
@@ -173,18 +173,19 @@ function generateLunaSol() {
   }*/
 }
 
-function generateBirds(p) {
+function generateSky(p) {
   noStroke();
   let col = color(vibrantCols[randomVibCol]);
   col.setAlpha(128 + 128 * sin(millis() / 10000));
 
   fill(cols2[randomCol2]);
   noStroke();
-  //birds
-  for (let b = 0; b < random(2, 48); b++) {
+  //stars
+  for (let b = 0; b < random(2, 50); b++) {
     let posX = random(p, width - p - 25);
     let posY = random(p + 25, p + 175);
     if (moonSun === 1) {
+      fill(255);
       rect(posX, posY, 3, 3, 100);
     }
     //clouds
