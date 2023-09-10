@@ -19,7 +19,7 @@ function draw() {
   glaze();
 
   push();
-  //confetti();
+  confetti();
   pop();
 }
 
@@ -37,10 +37,15 @@ function createDonut() {
 }
 
 function confetti() {
-  for (let c = 0; c < 2; c++) {
+  frameRate(6);
+  for (let c = 0; c < 500; c++) {
     fill(random(255), random(255), random(255));
-    circle(c + 12, 0, 20);
-    // posY += 0.01;
+    circle(
+      random(-width, width),
+      random(-height, height + posY),
+      random(2, 20)
+    );
+    posY += 0.01;
   }
 }
 
