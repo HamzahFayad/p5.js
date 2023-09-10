@@ -3,6 +3,7 @@ let posY;
 function setup() {
   createCanvas(600, 600, WEBGL);
   posY = 0;
+  //pixelDensity(5);
   //noLoop();
 }
 
@@ -64,4 +65,9 @@ function glaze() {
     rotate(20);
     ellipse(e + 150, 150, 50, 150);
   }
+}
+
+function mouseClicked() {
+  saveGif("donutparty", 5);
+  //save("donutparty.png");
 }
