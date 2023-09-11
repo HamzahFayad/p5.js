@@ -67,7 +67,7 @@ function glaze() {
   }
 }
 
-function mouseClicked() {
+/*function mouseClicked() {
   saveGif("donutparty", 5);
   //save("donutparty.png");
-}
+}*/
