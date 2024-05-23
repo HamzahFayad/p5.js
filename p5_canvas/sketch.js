@@ -11,7 +11,7 @@
 
 function setup() {
   //initials
-  createCanvas(400, 400);
+  createCanvas(600, 500);
   noLoop();
   pixelDensity(1);
   //work with pixels
@@ -39,7 +39,7 @@ function setup() {
   }
   updatePixels();
   //additional forms
-  additionalForms();
+  //additionalForms();
 }
 
 function additionalForms() {
