@@ -7,11 +7,17 @@ let rSpeed = 0.05;
 let s = -10;
 let sSpeed = 0.05;
 
+// let colsDay = ["#FFBB5C", "#FF9B50", "#E25E3E", "#C63D2F"];
+// let colsNight = ["#27374D", "#526D82", "#9DB2BF", "#DDE6ED"];
+
 function setup() {
   createCanvas(500, 700);
   pixelDensity(2);
   angleMode(DEGREES);
-  frameRate(10);
+  frameRate(25);
+
+  // randomCol1 = floor(random(colsDay.length));
+  // randomCol2 = floor(random(colsNight.length));
 }
 
 function draw() {
@@ -62,7 +68,7 @@ function draw() {
   push();
   fill(198, 61, 47, 70);
   rotate(r);
-  rect(0, height - height / 3 + y * 0.3, width * 2);
+  rect(-150, height - height / 3 + y * 0.3, width * 2);
   pop();
 
   push();
@@ -82,6 +88,28 @@ function draw() {
   rotate(s);
   rect(-150, height - 300 + y * 1.2, width * 2);
   pop();
+
+  //triangle(0, 400, 200, 400, 100, 100);
+  // push();
+  // stroke(226, 94, 62, 220);
+  // strokeWeight(2);
+  // let leftRandom1 = 200; //random(170, 200);
+  // let leftRandom2 = 215; //random(200, 210);
+  // let rightRandom1 = 215;
+  // let rightRandom2 = 225;
+  // line(leftRandom1, leftRandom1, leftRandom2, leftRandom2);
+  // line(rightRandom1, rightRandom1, rightRandom2, 195);
+  // pop();
+
+  // push();
+  // for (let c = 0; c < 15; c++) {
+  //   rotate(0);
+  //   fill(226, 94, 62, random(20, 100));
+  //   //frameRate(2);
+  //   //noLoop();
+  //   rect(c * 10, c + 10 * 15, 70, 40, 60);
+  // }
+  // pop();
 }
 
 // for (let i = 0; i < 15; i++) {
