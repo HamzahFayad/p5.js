@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Selfportrait</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap");
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+      canvas {
+        display: block;
+      }
+      .reg {
+        font-family: "Play", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+      .bold {
+        font-family: "Play", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+      }
+      #intro {
+        background-color: #080515;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
+        display: grid;
+        place-items: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+      }
+      #intro::after{
+        font-family: "Play", sans-serif;
+        content: "press key 's' for sound\A Enter to skip intro";
+        white-space: pre;
+        position: absolute;
+        bottom: 1rem;
+        animation: blink 3s 4;
+      }
+      #intro p {
+        position: absolute;
+        opacity: 0;
+        animation: fadeInOut 30s forwards;
+        /*margin: 0 5rem;*/
+        max-width: 750px;
+        font-size: 1.3rem;
+      }
+      #intro p:nth-child(1) {
+        animation: fadeInOut 30s forwards 0s;
+      }
+      #intro p:nth-child(2) {
+        animation: fadeInOut 30s forwards 6s;
+      }
+      #intro p:nth-child(3) {
+        animation: fadeInOut 30s forwards 12s;
+      }
+      #intro p:nth-child(4) {
+        animation: fadeInOut 30s forwards 18s;
+      }
+      #intro p:last-child {
+        opacity: 0;
+        animation: fadeIn 2s forwards 24s;
+      }
+      /* #intro span {
+        position: absolute;
+        bottom: 4rem;
+      } */
+      @keyframes fadeInOut {
+        0%,
+        20%,
+        100% {
+          opacity: 0;
+        }
+        5%,
+        15% {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      #play {
+        position: absolute;
+        z-index: 9;
+        color: #fff;
+        text-align: center;
+        left: 0;
+        right: 0;
+        bottom: 10rem;
+      }
+      .enter {
+        opacity: 1;
+        animation: blink 2s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      #interactions {
+        display: none;
+        position: absolute;
+        bottom: 0.4rem;
+        right: 2rem;
+        cursor: pointer;
+      }
+      #interactions #realworld, #interactions #surrealWorld {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.75rem;
+      }
+      #realworld p, #surrealWorld p {
+        margin: 0;
+      }
+    </style>
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <div id="intro">
+      <p class="reg">
+        Du hast also den Zug des Lebens gefunden <br />und willst mehr über mich
+        erfahren?
+      </p>
+      <p class="reg">
+        Hier werden meine Gedanken und Interessen lebendig
+        gehalten.
+        <br />Die Fahrt ist endlos, also, wenn du magst, begleite mich auf dem
+        Weg.
+      </p>
+      <p class="reg">
+        Du kannst einfach zurücklehnen und in meine Gedankenwelt eintauchen.
+      </p>
+      <p class="reg">
+        Aber denke daran, dass du jederzeit aussteigen kannst, wenn du möchtest.
+      </p>
+      <p
+        class="bold"
+        style="display: flex; flex-flow: column wrap; align-items: center"
+      >
+        <span class="reg">Zug betreten?</span>
+        <img src="./assets/images/zug.png" alt="icon" />
+        <span class="enter">Enter &#8617;</span>
+      </p>
+    </div>
+
+    <div id="interactions">
+      <div id="realworld">
+      <p id="world">🚞</p>
+      </div>
+
+      <div id="surrealWorld">
+        <p id="code">👨🏻‍💻</p>
+        <p id="photo">📷</p>
+        <p id="travel">🌍</p>
+      </div>
+    </div>
+
+    <script src="sketch.js"></script>
+    <script src="object.js"></script>
+    <script src="scene.js"></script>
+    <script src="signs.js"></script>
+    <script>
+      document.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          start();
+        }
+      });
+    </script>
+  </body>
+</html>

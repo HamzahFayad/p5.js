@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fish Swarm</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        display: block;
+      }
+      img#gameover {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        max-width: 150px;
+        opacity: 1;
+        transform: scale(1);
+        animation: fadeOut 5s ease-in-out forwards;
+      }
+      @keyframes fadeOut {
+        to {
+          opacity: 0;
+          visibility: hidden;
+          place-items: none;
+          transform: scale(0.8);
+        }
+      }
+    </style>
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <img id="gameover" src="./assets/gameover.png" alt="game over" />
+    <script src="boid.js"></script>
+    <script src="object.js"></script>
+    <script src="sketch.js"></script>
+  </body>
+</html>
